@@ -20,6 +20,7 @@
         "react"
     ],
     "rules": {
-        "semi": [1, "always"]
+        "no-unused-vars": ["warn"],
+        "semi": ["warn", "always"]
     }
 }
