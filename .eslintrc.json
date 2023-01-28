@@ -21,6 +21,7 @@
     ],
     "rules": {
         "no-unused-vars": ["warn"],
-        "semi": ["warn", "always"]
+        "semi": ["warn", "always"],
+        "react/prop-types": []
     }
 }

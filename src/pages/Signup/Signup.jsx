@@ -26,7 +26,7 @@ export const Signup = () => {
             <button type="submit">Sign up</button>
         </form>
 
-        <p>Don&apos;t have an account? <Link to="/login">Log in</Link></p>
+        <p>Already have an account? <Link to="/login">Log In</Link></p>
     </main>
   );
 };
