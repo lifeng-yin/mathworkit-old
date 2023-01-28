@@ -1,9 +1,11 @@
 import React, { useRef, useEffect } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/Auth';
 
 export const Signup = () => {
   const { signUp } = useAuth();
+  const navigate = useNavigate();
+  
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -21,7 +23,7 @@ export const Signup = () => {
     }
     else {
       console.log('yee');
-      <Navigate to='/' />
+      navigate('/', { replace: true });
     }
   };
 
