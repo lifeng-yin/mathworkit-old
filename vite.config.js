@@ -6,11 +6,11 @@ import postcssPresetEnv from 'postcss-preset-env';
 export default defineConfig({
   css: {
     postcss: {
-      plugins: postcssPresetEnv({
+      plugins: [postcssPresetEnv({
         features: {
           'nesting-rules': true
         }
-      })
+      })]
     }
   },
   plugins: [react()],
