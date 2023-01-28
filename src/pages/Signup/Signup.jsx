@@ -1,25 +1,39 @@
-import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useRef, useEffect } from 'react';
+import { Link, Navigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/Auth';
 
 export const Signup = () => {
+  const { signUp } = useAuth();
+
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+
+    const { error } = await signUp({ email, password })
     
+    if (error) {
+      alert('Error signing in.')
+    }
+    else {
+      console.log('yee');
+      <Navigate to='/' />
+    }
   };
 
   return (
     <main>
         <h1>Sign Up</h1>
         <form onSubmit={handleSubmit}>
-            <label htmlFor="email">Email</label>
-            <input id="email" type="email" ref={emailRef} />
+            <label htmlFor="email-input">Email</label>
+            <input id="email-input" type="email" ref={emailRef} />
 
             <label htmlFor="password">Password</label>
-            <input id="password" type="password" ref={passwordRef} />
+            <input id="password-input" type="password" ref={passwordRef} />
 
             <br />
 
