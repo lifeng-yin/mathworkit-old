@@ -8,21 +8,28 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState();
     const [loading, setLoading] = useState(true);
 
-    useEffect(async () => {
-        const {
-            data: { session }
-        } = await supabaseClient.auth.getSession();
+    useEffect(() => {
+        let isSubscribed = true;
+        const updateAuthData = async () => {
+            const { data: { session } } = await supabaseClient.auth.getSession();
 
-        setUser(session?.user ?? null);
-        setLoading(false);
-    
-        const { data: listener } = supabaseClient.auth.onAuthStateChange(async (event, session) => {
-          setUser(session?.user ?? null);
-          setLoading(false);
-        });
-    
+            setUser(session?.user ?? null);
+            setLoading(false);
+        
+            const { data: listener } = supabaseClient.auth.onAuthStateChange(async (event, session) => {
+                setUser(session?.user ?? null);
+                setLoading(false);
+
+                if (!isSubscribed) {
+                    listener?.unsubscribe;
+                }
+            });
+        };
+
+        updateAuthData();
+
         return () => {
-          listener?.unsubscribe();
+            isSubscribed = false;
         };
     }, []);
     
