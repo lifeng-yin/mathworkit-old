@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
                 setLoading(false);
 
                 if (!isSubscribed) {
-                    listener?.unsubscribe;
+                    listener?.unsubscribe();
                 }
             });
         };
