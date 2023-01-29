@@ -1,14 +1,27 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../contexts/Auth'
 
 export const Login = () => {
+  const { signIn } = useAuth()
+
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+
+    const { error } = await signIn({ email, password })
     
+    if (error) {
+      alert('Error logging in.')
+    }
+    else {
+      navigate('/', { replace: true });
+    }
   };
 
   return (

@@ -19,7 +19,7 @@ export const Signup = () => {
     const { error } = await signUp({ email, password })
     
     if (error) {
-      alert('Error signing in.')
+      alert('Error signing up.')
     }
     else {
       navigate('/', { replace: true });
