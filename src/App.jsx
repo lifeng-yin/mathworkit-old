@@ -13,7 +13,6 @@ import NotFound from './pages/NotFound/NotFound';
 
 import { AuthProvider } from './contexts/Auth';
 
-console.log(import.meta.url)
 function App() {
   return (
     <BrowserRouter>
@@ -35,5 +34,3 @@ function App() {
 }
 
 export default App;
-
-console.log(import.meta.env)

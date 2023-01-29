@@ -22,7 +22,6 @@ export const Signup = () => {
       alert('Error signing in.')
     }
     else {
-      console.log('yee');
       navigate('/', { replace: true });
     }
   };
