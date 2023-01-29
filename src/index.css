@@ -1,0 +1,14 @@
+:root {
+    --primary-color: #255ed1;
+    font-family: system-ui;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html, body {
+    width: 100%;
+}
+

@@ -9,6 +9,7 @@ import Landing from './pages/Landing/Landing';
 import Signup from './pages/Signup/Signup';
 import Login from './pages/Login/Login';
 import Browse from './pages/Browse/Browse';
+import Create from './pages/Create/Create';
 import NotFound from './pages/NotFound/NotFound';
 
 import { AuthProvider } from './contexts/Auth';
@@ -24,6 +25,7 @@ function App() {
           <Route path="/login" element={<Login/>}></Route>
           <Route path="/" element={<PrivateRoutes/>}>
             <Route path="/browse" element={<Browse />}></Route>
+            <Route path="/create" element={<Create />}></Route>
           </Route>
           <Route path="/browse" element={<Browse/>}></Route>
           <Route path="*" element={<NotFound/>}></Route>
