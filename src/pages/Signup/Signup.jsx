@@ -39,10 +39,10 @@ export const Signup = () => {
         <h1>Sign Up</h1>
         <FormField onSubmit={handleSubmit}>
             <label htmlFor="email-input">Email</label>
-            <input id="email-input" type="email" value={email} onChange={handleEmailChange} required/>
+            <input id="email-input" type="email" value={email} onChange={handleEmailChange} placeholder="Enter your email" required/>
 
             <label htmlFor="password">Password</label>
-            <input id="password-input" type="password" value={password} onChange={handlePasswordChange} required/>
+            <input id="password-input" type="password" value={password} onChange={handlePasswordChange} placeholder="Create a password" required/>
 
             <br />
 

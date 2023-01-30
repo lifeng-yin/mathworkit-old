@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import FormField from '../../components/FormField/FormField';
 import { useAuth } from '../../contexts/Auth';
@@ -39,10 +39,10 @@ export const Login = () => {
         <h1>Log In</h1>
         <FormField onSubmit={handleSubmit}>
             <label htmlFor="email">Email</label>
-            <input id="email" type="email" ref={emailRef} value={email} handleChange={handleEmailChange} required/>
+            <input id="email" type="email" value={email} onChange={handleEmailChange} placeholder="Enter your email" required/>
 
             <label htmlFor="password">Password</label>
-            <input id="password" type="password" value={password} handleChange={handlePasswordChange} required/>
+            <input id="password" type="password" value={password} onChange={handlePasswordChange} placeholder="Enter your password" required/>
 
             <button type="submit" disabled={!email || !password}>Log In</button>
         </FormField>
