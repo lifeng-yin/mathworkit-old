@@ -11,8 +11,9 @@ form {
         
         border: 1.5px solid #DFDFDF;
         border-radius: 5px;
-
         outline: none;
+
+        font-size: 1rem;
     }
 
     & input:focus {
