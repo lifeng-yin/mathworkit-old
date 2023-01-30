@@ -5,8 +5,8 @@
     font-size: 1.25rem;
     text-decoration: none;
 
-    &:hover {
-        cursor: pointer;
+    &:disabled {
+        background-color: #DFDFDF;
     }
 }
 

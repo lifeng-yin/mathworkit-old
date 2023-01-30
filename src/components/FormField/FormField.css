@@ -29,5 +29,11 @@ form {
 
         color: #FFFFFF;
         background-color: var(--primary-color);
+
+        &:disabled {
+            color: #6F6F6F;
+            background-color: #EFEFEF;
+            cursor: not-allowed;
+        }
     }
 }
