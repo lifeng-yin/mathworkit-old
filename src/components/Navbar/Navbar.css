@@ -15,10 +15,6 @@ nav {
         font-size: 1.75rem;
         font-weight: bold;
         margin: auto 0;
-
-        &:hover {
-            cursor: pointer;
-        }
     }
 
     & ul {

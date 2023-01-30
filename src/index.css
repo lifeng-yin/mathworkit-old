@@ -12,3 +12,6 @@ html, body, #root, main {
     height: 100%;
 }
 
+a:hover, button:hover {
+    cursor: pointer;
+}
