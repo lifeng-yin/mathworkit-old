@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import FormField from '../../components/FormField/FormField';
 import { useAuth } from '../../contexts/Auth';
+import './Signup.css';
 
 export const Signup = () => {
   const { signUp } = useAuth();
@@ -28,20 +30,22 @@ export const Signup = () => {
 
   return (
     <main>
+      <div className="signup">
         <h1>Sign Up</h1>
-        <form onSubmit={handleSubmit}>
+        <FormField onSubmit={handleSubmit}>
             <label htmlFor="email-input">Email</label>
-            <input id="email-input" type="email" ref={emailRef} />
+            <input id="email-input" type="email" ref={emailRef} required/>
 
             <label htmlFor="password">Password</label>
-            <input id="password-input" type="password" ref={passwordRef} />
+            <input id="password-input" type="password" ref={passwordRef} required/>
 
             <br />
 
             <button type="submit">Sign up</button>
-        </form>
+        </FormField>
 
-        <p>Already have an account? <Link to="/login">Log In</Link></p>
+        <p>Already have an account?&nbsp; <Link to="/login">Log In</Link></p>
+      </div>
     </main>
   );
 };

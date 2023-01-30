@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../contexts/Auth'
+import FormField from '../../components/FormField/FormField';
+import { useAuth } from '../../contexts/Auth';
+import './Login.css';
 
 export const Login = () => {
   const { signIn } = useAuth()
@@ -26,18 +28,20 @@ export const Login = () => {
 
   return (
     <main>
+      <div className="login">
         <h1>Log In</h1>
-        <form onSubmit={handleSubmit}>
+        <FormField onSubmit={handleSubmit}>
             <label htmlFor="email">Email</label>
-            <input id="email" type="email" ref={emailRef} />
+            <input id="email" type="email" ref={emailRef} required/>
 
             <label htmlFor="password">Password</label>
-            <input id="password" type="password" ref={passwordRef} />
+            <input id="password" type="password" ref={passwordRef} required/>
 
             <button type="submit">Log In</button>
-        </form>
+        </FormField>
 
-        <p>Don&apos;t have an account? <Link to="/signup">Sign Up</Link></p>
+        <p>Don&apos;t have an account?&nbsp; <Link to="/signup">Sign Up</Link></p>
+      </div>
     </main>
   );
 };
