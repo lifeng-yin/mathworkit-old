@@ -14,7 +14,9 @@
     color: #FFFFFF;
     background-color: var(--primary-color);
 
-    /* TODO: Darken primary button on hover */
+    &:hover {
+        background-color: var(--primary-darkened);
+    }
 }
 
 .button-secondary {

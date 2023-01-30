@@ -31,6 +31,10 @@ form {
         color: #FFFFFF;
         background-color: var(--primary-color);
 
+        &:hover {
+            background-color: var(--primary-darkened);
+        }
+
         &:disabled {
             color: #6F6F6F;
             background-color: #EFEFEF;
