@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint src/**/*.jsx"
+    "lint": "eslint src/**/*.jsx",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -26,6 +27,7 @@
     "@vitejs/plugin-react": "^3.0.0",
     "eslint": "^8.32.0",
     "eslint-plugin-react": "^7.32.1",
+    "typescript": "^4.9.5",
     "vite": "^4.0.0"
   }
 }

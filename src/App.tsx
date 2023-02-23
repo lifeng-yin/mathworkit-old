@@ -19,12 +19,12 @@ import { AuthProvider } from './contexts/Auth';
 
 function App() {
   return (
-    <ThemeProvider withGlobalStyles withNormalizeCSS>
+    <ThemeProvider>
       <BrowserRouter>
         <AuthProvider>
           <Navbar></Navbar>
           <Routes>
-            <Route exact path="/" element={<Landing/>}></Route>
+            <Route path="/" element={<Landing/>}></Route>
             <Route path="/signup" element={<Signup/>}></Route>
             <Route path="/login" element={<Login/>}></Route>
             <Route path="/" element={<PrivateRoutes/>}>
