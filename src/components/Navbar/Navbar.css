@@ -14,6 +14,7 @@ nav {
         color: var(--primary-color);
         font-size: 1.75rem;
         font-weight: bold;
+        text-decoration: none;
         margin: auto 0;
     }
 

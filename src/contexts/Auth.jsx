@@ -9,33 +9,26 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        let isSubscribed = true;
         const updateAuthData = async () => {
             const { data: { session } } = await supabaseClient.auth.getSession();
 
             setUser(session?.user ?? null);
             setLoading(false);
         
-            const { data: listener } = supabaseClient.auth.onAuthStateChange(async (event, session) => {
+            supabaseClient.auth.onAuthStateChange(async (event, session) => {
                 setUser(session?.user ?? null);
                 setLoading(false);
-
-                if (!isSubscribed) {
-                    listener?.unsubscribe();
-                }
             });
         };
 
         updateAuthData();
 
-        return () => {
-            isSubscribed = false;
-        };
+        
     }, []);
     
     const value = {
         signUp: ({ email, password }) => supabaseClient.auth.signUp({ email, password }),
-        signIn: ({ email, password }) => supabaseClient.auth.signInWithPassword({ email, password }),
+        signInWithPassword: ({ email, password }) => supabaseClient.auth.signInWithPassword({ email, password }),
         signOut: () => supabaseClient.auth.signOut(),
         user,
     };

@@ -5,7 +5,7 @@ import { useAuth } from '../../contexts/Auth';
 import './Login.css';
 
 export const Login = () => {
-  const { signIn } = useAuth();
+  const { signInWithPassword } = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -23,10 +23,10 @@ export const Login = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const { error } = await signIn({ email, password })
+    const { error } = await signInWithPassword({ email, password })
     
     if (error) {
-      alert('Error logging in.')
+      alert('Error logging in: ' + error);
     }
     else {
       navigate('/', { replace: true });
