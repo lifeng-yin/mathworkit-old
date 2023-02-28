@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import postcssPresetEnv from 'postcss-preset-env';
 
-// https://vitejs.dev/config/
+/** @type {import('vite').UserConfig} */
 export default defineConfig({
   css: {
     postcss: {
@@ -11,7 +11,12 @@ export default defineConfig({
           'nesting-rules': true
         }
       })]
-    }
+    },
   },
   plugins: [react()],
+  server: {
+    watch: {
+      usePolling: true
+    }
+  }
 })

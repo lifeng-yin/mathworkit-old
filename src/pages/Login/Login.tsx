@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import FormField from '../../components/FormField/FormField';
 import { useAuth } from '../../contexts/Auth';
 import './Login.css';
 
@@ -11,16 +10,16 @@ export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleEmailChange = e => {
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
     console.log(e.target.value)
   }
 
-  const handlePasswordChange = e => {
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   }
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const { error } = await signInWithPassword({ email, password })
@@ -37,7 +36,7 @@ export const Login = () => {
     <main>
       <div className="login">
         <h1>Log In</h1>
-        <FormField onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <label htmlFor="email">Email</label>
             <input id="email" type="email" value={email} onChange={handleEmailChange} placeholder="Enter your email" required/>
 
@@ -45,7 +44,7 @@ export const Login = () => {
             <input id="password" type="password" value={password} onChange={handlePasswordChange} placeholder="Enter your password" required/>
 
             <button type="submit" disabled={!email || !password}>Log In</button>
-        </FormField>
+        </form>
 
         <p>Don&apos;t have an account?&nbsp; <Link to="/signup">Sign Up</Link></p>
       </div>
