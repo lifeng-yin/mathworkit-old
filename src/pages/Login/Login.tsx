@@ -1,28 +1,25 @@
 import { Container, Paper, PasswordInput, TextInput, Title, Button, Text, createStyles, Anchor } from '@mantine/core';
 import React, { useState, ChangeEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useForm, isEmail } from '@mantine/form';
 import { useAuth } from '../../contexts/Auth';
 
 export const Login = () => {
   const { signInWithPassword } = useAuth();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const form = useForm({
+    initialValues: {
+      email: '',
+      password: ''
+    },
+    validate: {
+      email: isEmail("Invalid email")
+    }
+  })
 
-  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-    console.log(e.target.value)
-  }
-
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  }
-
-  const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const { error } = await signInWithPassword({ email, password })
+  const handleSubmit = async () => {
+    const { error } = await signInWithPassword({ email: form.values.email, password: form.values.password })
     
     if (error) {
       alert('Error logging in: ' + error);
@@ -30,7 +27,7 @@ export const Login = () => {
     else {
       navigate('/', { replace: true });
     }
-  };
+  }
 
   const useStyles = createStyles((theme) => ({
     title: {
@@ -45,15 +42,29 @@ export const Login = () => {
     }
   }))
 
-  const { classes } = useStyles()
+  const { classes } = useStyles();
 
   return (
       <Paper withBorder shadow="md" radius="md" p={30} sx={{ width: "max(40%, 400px)", margin: "5% auto"}}>
         <Title className={classes.title}>Log In</Title>
 
-        <form onSubmit={handleSubmit}>
-          <TextInput className={classes.input} size="md" label="Email" placeholder="Enter your email" required />
-          <PasswordInput className={classes.input} size="md" label="Password" placeholder="Your secret password" required />
+        <form onSubmit={form.onSubmit(handleSubmit)}>
+          <TextInput 
+            className={classes.input}
+            size="md"
+            label="Email"
+            placeholder="Enter your email"
+            required
+            {...form.getInputProps("email")} 
+          />
+          <PasswordInput 
+            className={classes.input}
+            size="md"
+            label="Password"
+            placeholder="Your secret password"
+            required
+            {...form.getInputProps("password")}
+          />
           <Button className={classes.button} type="submit" fullWidth size="lg">Log In</Button>
         </form>
 

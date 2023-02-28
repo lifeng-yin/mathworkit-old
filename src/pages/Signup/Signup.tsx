@@ -1,28 +1,27 @@
 import React, { useRef, useEffect, useState, ChangeEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { createStyles, Paper, Title, Text, TextInput, PasswordInput, Button, Anchor } from '@mantine/core'
+import { useForm, isEmail } from '@mantine/form';
 import { useAuth } from '../../contexts/Auth';
 
 export const Signup = () => {
   const { signUp } = useAuth();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  
+  const form = useForm({
+    initialValues: {
+      email: '',
+      password: ''
+    },
+    validate: {
+      email: isEmail("Invalid email")
+    }
+  })
+  
 
-  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-    console.log(e.target.value)
-  }
-
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  }
-
-  const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const { error } = await signUp({ email, password })
+  const handleSubmit = async () => {
+    const { error } = await signUp({ email: form.values.email, password: form.values.password })
     
     if (error) {
       alert('Error signing up.')
@@ -51,10 +50,25 @@ export const Signup = () => {
       <Paper withBorder shadow="md" radius="md" p={30} sx={{ width: "max(40%, 400px)", margin: "5% auto"}}>
         <Title className={classes.title}>Sign Up</Title>
 
-        <TextInput className={classes.input} size="md" label="Email" placeholder="Enter your email" required />
-        <PasswordInput className={classes.input} size="md" label="Password" placeholder="Your secret password" required />
-        <Button className={classes.button} fullWidth size="lg">Sign Up</Button>
-
+        <form onSubmit={form.onSubmit(handleSubmit)}>
+          <TextInput 
+            className={classes.input}
+            size="md"
+            label="Email"
+            placeholder="Enter your email"
+            required
+            {...form.getInputProps("email")} 
+          />
+          <PasswordInput 
+            className={classes.input}
+            size="md"
+            label="Password"
+            placeholder="Create a password"
+            required
+            {...form.getInputProps("password")}
+          />
+          <Button className={classes.button} type="submit" fullWidth size="lg">Sign Up</Button>
+        </form>
         <Text color="dimmed">Already have an account?&nbsp; <Anchor component={Link} to="/login">Log in instead</Anchor></Text>
       </Paper>
   );
