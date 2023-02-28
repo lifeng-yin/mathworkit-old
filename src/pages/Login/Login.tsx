@@ -1,7 +1,7 @@
+import { Container, Paper, PasswordInput, TextInput, Title, Button, Text, createStyles, Anchor } from '@mantine/core';
 import React, { useState, ChangeEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/Auth';
-import './Login.css';
 
 export const Login = () => {
   const { signInWithPassword } = useAuth();
@@ -32,23 +32,33 @@ export const Login = () => {
     }
   };
 
+  const useStyles = createStyles((theme) => ({
+    title: {
+      marginBottom: theme.spacing.lg
+    },
+    input: {
+      marginBottom: theme.spacing.md
+    },
+    button: {
+      marginTop: theme.spacing.lg,
+      marginBottom: theme.spacing.lg
+    }
+  }))
+
+  const { classes } = useStyles()
+
   return (
-    <main>
-      <div className="login">
-        <h1>Log In</h1>
+      <Paper withBorder shadow="md" radius="md" p={30} sx={{ width: "max(40%, 400px)", margin: "5% auto"}}>
+        <Title className={classes.title}>Log In</Title>
+
         <form onSubmit={handleSubmit}>
-            <label htmlFor="email">Email</label>
-            <input id="email" type="email" value={email} onChange={handleEmailChange} placeholder="Enter your email" required/>
-
-            <label htmlFor="password">Password</label>
-            <input id="password" type="password" value={password} onChange={handlePasswordChange} placeholder="Enter your password" required/>
-
-            <button type="submit" disabled={!email || !password}>Log In</button>
+          <TextInput className={classes.input} size="md" label="Email" placeholder="Enter your email" required />
+          <PasswordInput className={classes.input} size="md" label="Password" placeholder="Your secret password" required />
+          <Button className={classes.button} type="submit" fullWidth size="lg">Log In</Button>
         </form>
 
-        <p>Don&apos;t have an account?&nbsp; <Link to="/signup">Sign Up</Link></p>
-      </div>
-    </main>
+        <Text color="dimmed">Don&apos;t have an account?&nbsp; <Anchor component={Link} to="/signup">Sign Up</Anchor></Text>
+      </Paper>
   );
 };
 

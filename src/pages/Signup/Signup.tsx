@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState, ChangeEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { createStyles, Paper, Title, Text, TextInput, PasswordInput, Button, Anchor } from '@mantine/core'
 import { useAuth } from '../../contexts/Auth';
-import './Signup.css';
 
 export const Signup = () => {
   const { signUp } = useAuth();
@@ -32,25 +32,31 @@ export const Signup = () => {
     }
   };
 
+  const useStyles = createStyles((theme) => ({
+    title: {
+      marginBottom: theme.spacing.lg
+    },
+    input: {
+      marginBottom: theme.spacing.md
+    },
+    button: {
+      marginTop: theme.spacing.lg,
+      marginBottom: theme.spacing.lg
+    }
+  }))
+
+  const { classes } = useStyles()
+
   return (
-    <main>
-      <div className="signup">
-        <h1>Sign Up</h1>
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="email-input">Email</label>
-            <input id="email-input" type="email" value={email} onChange={handleEmailChange} placeholder="Enter your email" required/>
+      <Paper withBorder shadow="md" radius="md" p={30} sx={{ width: "max(40%, 400px)", margin: "5% auto"}}>
+        <Title className={classes.title}>Sign Up</Title>
 
-            <label htmlFor="password">Password</label>
-            <input id="password-input" type="password" value={password} onChange={handlePasswordChange} placeholder="Create a password" required/>
+        <TextInput className={classes.input} size="md" label="Email" placeholder="Enter your email" required />
+        <PasswordInput className={classes.input} size="md" label="Password" placeholder="Your secret password" required />
+        <Button className={classes.button} fullWidth size="lg">Sign Up</Button>
 
-            <br />
-
-            <button type="submit" disabled={!email || !password}>Sign up</button>
-        </form>
-
-        <p>Already have an account?&nbsp; <Link to="/login">Log In</Link></p>
-      </div>
-    </main>
+        <Text color="dimmed">Already have an account?&nbsp; <Anchor component={Link} to="/login">Log in instead</Anchor></Text>
+      </Paper>
   );
 };
 
