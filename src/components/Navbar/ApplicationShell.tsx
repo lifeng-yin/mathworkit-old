@@ -37,6 +37,7 @@ const useStyles = createStyles((theme) => ({
             paddingRight: theme.spacing.lg,
             display: 'flex',
             alignItems: 'center',
+            color: theme.colorScheme === 'light' ? theme.colors.gray[7] : theme.colors.gray[2],
             '&:hover': {
                 textDecoration: 'none',
                 backgroundColor: theme.colorScheme === 'light' ? theme.colors.gray[1] : theme.colors.gray[9]
