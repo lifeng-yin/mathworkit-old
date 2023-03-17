@@ -17,6 +17,6 @@
       "jsx": "react-jsx",
       "types": ["vite/client"]
     },
-    "include": ["src", "test-utils"],
+    "include": ["src", "test-utils", "public/tinymce/plugins/equation-editor", "public/editor"],
     "references": [{ "path": "./tsconfig.node.json" }]
   }

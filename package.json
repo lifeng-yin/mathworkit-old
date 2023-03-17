@@ -17,10 +17,13 @@
     "@mantine/hooks": "^5.10.4",
     "@supabase/supabase-js": "^2.5.0",
     "@tabler/icons-react": "^2.7.0",
+    "@tinymce/tinymce-react": "^4.3.0",
     "postcss-preset-env": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.8.0"
+    "react-router-dom": "^6.8.0",
+    "tinymce": "^6.3.2",
+    "tinymce-equation-plugin": "github:insoutt/tinymce-equation-editor"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",
