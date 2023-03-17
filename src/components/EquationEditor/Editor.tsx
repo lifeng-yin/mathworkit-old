@@ -9,14 +9,14 @@ const EquationEditor = () => {
 
   return (
     <Editor
-      initialValue="<p>This is the initial content of the editor</p>"
       tinymceScriptSrc={'/tinymce/tinymce.min.js'}
+      initialValue="<p>This is the initial content of the editor</p>"
       init={{
         plugins: ['equation-editor'],
         extended_valid_elements: 'span[class|style|data-atom-id]',
         toolbar: 'equation-editor',
         equation_editor_config: {
-            url: 'editor/equation_editor.html', // URL of equation editor Page
+            url: 'tinymce/plugins/equation-editor/editor/equation_editor.html', // URL of equation editor Page
             origin: document.location.origin,
             title: 'Equation Editor',
             space_after_content: '&nbsp;',
