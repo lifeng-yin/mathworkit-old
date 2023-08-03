@@ -1,5 +1,5 @@
-# Mathworkit
-Project for Hackrithmic 2
+# Mathworkit (old)
+(Attempted) Project for Hackrithmic 2
 
 
 💡 Inspiration
